@@ -7,7 +7,7 @@ import sys
 def generateFiles(tracked_turtle):
    py_file = "TurtleRecording.py"
 
-   #create executable on Windows
+   # create executable on Windows
    if os.name == "nt":
       py_dir = _mkdir("./TurtleRecording1/")
       _generatePy(py_dir + py_file, tracked_turtle)
@@ -18,13 +18,21 @@ def generateFiles(tracked_turtle):
       _movePyFiles(py_dir, py_dir + "src/")
       subprocess.Popen("explorer " + os.path.normpath(py_dir))
 
-   #just open python file on Linux
+   # just open python file on Linux
    elif os.name == "posix":
-      _generatePy(py_file, tracked_turtle)
+      py_file = _generateLinuxPy(py_file, tracked_turtle)
       subprocess.Popen(["nautilus", os.getcwd()])
       subprocess.Popen(["gedit", py_file])
 
-   sys.exit()
+def _incrementPy(py_file):
+   return py_file[:-4] + str(int(py_file[-4])+1) + py_file[-3:]
+
+def _generateLinuxPy(py_file, tracked_turtle):
+   py_file = py_file[:-3] + "1" + py_file[-3:]
+   while os.path.isfile(py_file):
+      py_file = _incrementPy(py_file)
+   _generatePy(py_file, tracked_turtle)
+   return py_file
 
 def _incrementDir(the_dir):
    return the_dir[:-2] + str(int(the_dir[-2])+1) + the_dir[-1]
