@@ -5,7 +5,7 @@ Draw a path for a turtle (Turtle graphics) to follow! Generates code for the pat
 
 Instructions:
 
-Run main.py to start the program. Be sure to have the proper dependencies. Tested with Python 2.7.
+Run main.py to start the program. Be sure to have the proper dependencies (like py2exe if you're running it on windows). Tested with Python 2.7.
 
 When running the program, click in the giant area below the buttons. Draw something. 
 Feel free to change colors and reset the canvas at will. 
